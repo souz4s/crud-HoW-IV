@@ -1,0 +1,23 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+model tickets {
+  id          Int        @id @default(autoincrement())
+  evento      String
+  artista     String
+  local       String
+  descricao   String
+  data        String
+  preco       Decimal    @db.Decimal(10,2)
+  url         String
+  createdAt   DateTime   @default(now())
+  updateAt    DateTime?  @updatedAt
+}
